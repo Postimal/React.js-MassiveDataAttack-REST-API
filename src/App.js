@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Post from "./components/Post";
 import About from "./components/About";
+import LoginForm from "./components/LoginForm";
+import ValidatedLoginForm from "./components/ValidatedLoginForm";
 
 class App extends Component {
   render() {
@@ -16,6 +18,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/validation" component={ValidatedLoginForm} />
             <Route path="/:post_id" component={Post} />
           </Switch>
         </div>

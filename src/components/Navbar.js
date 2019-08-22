@@ -16,6 +16,12 @@ function Navbar() {
           <li>
             <NavLink to="/contact">Contact</NavLink>
           </li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/validation">Login + validation</NavLink>
+          </li>
         </ul>
       </div>
     </nav>
