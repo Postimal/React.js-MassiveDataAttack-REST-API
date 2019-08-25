@@ -7,7 +7,6 @@ class ValidatedLoginForm extends React.Component {
  
 
   render() {
-    console.log(this.props)
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
