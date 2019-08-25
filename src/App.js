@@ -5,21 +5,29 @@ import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Post from "./components/Post";
 import About from "./components/About";
-import LoginForm from "./components/LoginForm";
+// import LoginForm from "./components/LoginForm";
 import ValidatedLoginForm from "./components/ValidatedLoginForm";
 
 class App extends Component {
+  state = {
+    isToggleOn: false
+  }
+
+  showMenu = () => {
+    this.setState(state => ({ isToggleOn: !state.isToggleOn }));
+  }
+                    // w Route propsy przekazujemy dajac metode render to najlepszy sposób tj.7 liniej niżej, dałem tam funkcje z App.js
+                    // showMenu (jest tam pobierana z propsów), która mi zmienia State, który przekazałem także do Navbaru i ternatory operator zadządza
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Navbar />
+          <Navbar isToggleOn={this.state.isToggleOn}/>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/"  render={(props) => <ValidatedLoginForm {...props} showMenu={this.showMenu} />} /> 
+            <Route path="/home" component={Home} /> 
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
-            <Route path="/login" component={LoginForm} />
-            <Route path="/validation" component={ValidatedLoginForm} />
             <Route path="/:post_id" component={Post} />
           </Switch>
         </div>

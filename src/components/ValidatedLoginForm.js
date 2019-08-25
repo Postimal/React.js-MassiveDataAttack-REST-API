@@ -2,7 +2,12 @@ import React from "react";
 import { Formik } from "formik";
 import * as EmailValidator from "email-validator";
 
-function ValidatedLoginForm() {
+
+class ValidatedLoginForm extends React.Component {
+ 
+
+  render() {
+    console.log(this.props)
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -10,6 +15,8 @@ function ValidatedLoginForm() {
         setTimeout(() => {
           console.log("Logging in", values);
           setSubmitting(false);
+          this.props.showMenu();
+          this.props.history.push('/home');
         }, 500);
       }}
       // validacja
@@ -79,6 +86,7 @@ function ValidatedLoginForm() {
       }}
     </Formik>
   );
+    }
 }
 
 export default ValidatedLoginForm;
