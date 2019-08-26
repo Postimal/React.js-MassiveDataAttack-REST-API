@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+form img {
+  position: absolute;
+  right: 0;
+  top: 64px;
+  width: 200px;
+}
 
 .overlay {
   widows: 100%;
