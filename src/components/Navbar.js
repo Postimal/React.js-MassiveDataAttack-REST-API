@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar({isToggleOn}) {
   return (
@@ -11,19 +11,19 @@ function Navbar({isToggleOn}) {
         {isToggleOn === true ? (
           <React.Fragment>
           <li>
-            <Link to="/home">Home</Link>
+            <NavLink activeClassName="active" to="/home">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/about">Infinite Scrolling</NavLink>
+            <NavLink activeClassName="active" to="/about">Infinite Scrolling</NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink activeClassName="active" to="/contact">Contact</NavLink>
           </li>
           </React.Fragment>
           )
           :
           (<li>
-            <NavLink to="/">Login + validation</NavLink>
+            <NavLink activeClassName="active" to="/">Login + validation</NavLink>
           </li>)}
         </ul>
         

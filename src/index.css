@@ -77,3 +77,8 @@ button:hover {
   background-color: white;
   color: rgb(70, 153, 179);
 }
+
+.active {
+  color: #000;
+  background:  #fff;
+}
