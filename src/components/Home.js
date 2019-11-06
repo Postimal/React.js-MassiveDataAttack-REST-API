@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/postActions'
-import axios from "axios";
+import { fetchPosts } from '../actions/postActions';
+import { fetchMorePosts } from '../actions/postActions'
 import { Link } from "react-router-dom";
+import PostForm from './PostForm'
 
 class Home extends Component {
   componentDidMount() {
@@ -10,15 +11,18 @@ class Home extends Component {
     this.props.fetchPosts();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.newPost) {
+      this.props.posts.unshift(nextProps.newPost)
+    }
+  }
+
   handleClick = () => {
-    axios.get("https://jsonplaceholder.typicode.com/posts").then(res => {
-      const postsLength = this.state.posts.length;
-      const newPosts = res.data.slice(postsLength, postsLength + 8);
-      this.setState({
-        posts: [...this.state.posts, ...newPosts]
-      });
-    });
-  };
+    const postsLength = this.props.posts.length;
+    this.props.fetchMorePosts(postsLength);
+      console.log(this.props)
+    };
+  ;
 
   render() {
     const { posts } = this.props;
@@ -37,6 +41,8 @@ class Home extends Component {
           </div>
         );
       })
+         
+          
     ) : (
       <h1 className="center overlay">LOADING ...</h1>
     );
@@ -46,6 +52,7 @@ class Home extends Component {
         <h4 className="center white-text">
           Massive data, common e-commerce method
         </h4>
+        <PostForm/>
         {postList}
         <button
           className="waves-effect waves-light btn"
@@ -61,7 +68,8 @@ class Home extends Component {
 
 
 const mapStateToProps = state => ({
-  posts: state.posts.items
+  posts: state.posts.items,
+  newPost: state.posts.item
 })
 
-export default  connect(mapStateToProps, { fetchPosts })(Home);
+export default  connect(mapStateToProps, { fetchPosts, fetchMorePosts })(Home);
